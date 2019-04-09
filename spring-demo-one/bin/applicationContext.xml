@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Load the properties file: sport.properties -->
+	<context:property-placeholder location="classpath:sport.properties"/>
+	
+	
+
+    
+    
+    <!-- Define the dependency  -->
+    
+    <!-- We can copy our class thanks to: copy qualified name -->
+    <bean id="myFortuneService" class="spring_demo_one.HappyFortuneService"></bean>
+    
+    <bean id="myRandomService" class="spring_demo_one.RandomFortuneService"></bean>
+    
+    
+    <bean id="myCoach" class="spring_demo_one.TrackCoach">
+    	<!-- Set up constructor injection -->
+    	<constructor-arg ref="myFortuneService" />
+    </bean>
+    
+    <bean id="myCoach2" class="spring_demo_one.BaseballCoach">
+    	<constructor-arg ref="myRandomService" />
+   
+    </bean>
+    
+    <bean id="myCricketCoach" class="spring_demo_one.CricketCoach">
+    	<!-- El atributo name tiene que tener el mismo nombre que el setter
+    	donde se declara la dependencia (la primera letra tiene que ir en minuscula) -->
+    	<property name="fortuneService" ref="myFortuneService"/>
+    	
+    	<property name="emailAddress" value="${foo.email}" />
+    						<!-- value: literal values -->
+    	<property name="team" value="${foo.team}" />
+    </bean>
+    
+</beans>
+
+
+
+
+
