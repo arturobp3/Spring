@@ -1,4 +1,4 @@
-package spring_demo_one;
+package spring_demo_one.IoC_DI;
 
 public class HappyFortuneService implements FortuneService {
 

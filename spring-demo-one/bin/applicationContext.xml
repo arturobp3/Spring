@@ -11,28 +11,26 @@
 	<context:property-placeholder location="classpath:sport.properties"/>
 	
 	
-
-    
     
     <!-- Define the dependency  -->
     
     <!-- We can copy our class thanks to: copy qualified name -->
-    <bean id="myFortuneService" class="spring_demo_one.HappyFortuneService"></bean>
+    <bean id="myFortuneService" class="spring_demo_one.IoC_DI.HappyFortuneService"></bean>
     
-    <bean id="myRandomService" class="spring_demo_one.RandomFortuneService"></bean>
+    <bean id="myRandomService" class="spring_demo_one.IoC_DI.RandomFortuneService"></bean>
     
     
-    <bean id="myCoach" class="spring_demo_one.TrackCoach">
+    <bean id="myCoach" class="spring_demo_one.IoC_DI.TrackCoach">
     	<!-- Set up constructor injection -->
     	<constructor-arg ref="myFortuneService" />
     </bean>
     
-    <bean id="myCoach2" class="spring_demo_one.BaseballCoach">
+    <bean id="myCoach2" class="spring_demo_one.IoC_DI.BaseballCoach">
     	<constructor-arg ref="myRandomService" />
    
     </bean>
     
-    <bean id="myCricketCoach" class="spring_demo_one.CricketCoach">
+    <bean id="myCricketCoach" class="spring_demo_one.IoC_DI.CricketCoach">
     	<!-- El atributo name tiene que tener el mismo nombre que el setter
     	donde se declara la dependencia (la primera letra tiene que ir en minuscula) -->
     	<property name="fortuneService" ref="myFortuneService"/>

@@ -2,6 +2,8 @@ package spring_demo_one;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import spring_demo_one.IoC_DI.CricketCoach;
+
 public class HelloSpringApp {
 
 	public static void main(String[] args) {

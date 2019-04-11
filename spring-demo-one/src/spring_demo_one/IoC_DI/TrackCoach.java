@@ -1,4 +1,6 @@
-package spring_demo_one;
+package spring_demo_one.IoC_DI;
+
+import spring_demo_one.Coach;
 
 public class TrackCoach implements Coach {
 	
