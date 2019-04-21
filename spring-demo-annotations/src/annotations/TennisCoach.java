@@ -1,12 +1,30 @@
 package annotations;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+/*
+ * Para ejecutar unas funciones justo despues de que se ejecute el constructor 
+ * y de que se inyecten las dependencias, podemos usar la anotación: @PostConstruct
+ * Esta anotación se puede poner en la función que deseemos. Generalmente el tipo de retorno
+ * de la función es void, ya que no se puede capturar aquello que retorna y obligatoriamente no debe 
+ * tener argumentos de ningun tipo.
+ * 
+ * Si queremos ejecutar una función antes de destruir el objeto podemos usar la anotación: @PreDestroy
+ * en el método que queramos. Esta anotación no funciona en clases que tienen un scope Prototype
+ * 
+ * Para java 9 en adelante, esta anotación no funcionará
+ * */
 
 
 @Component
+@Scope("singleton") //Al poner singleton o no poner nada, nos referiremos siempre al mismo objeto (@Scope("prototype")
 public class TennisCoach implements Coach {
 	
 	@Autowired //Funciona como los ejemplos de abajo
@@ -35,6 +53,17 @@ public class TennisCoach implements Coach {
 	@Override
 	public String getDailyFortune() {
 		return fortuneService.getFortune();
+	}
+	
+	
+	@PostConstruct
+	public void doMyStartupStuff() {
+		System.out.println(">> TennisCoach: Inside doMyStartupStuff");
+	}
+	
+	@PreDestroy
+	public void doMyCleanupStuff() {
+		System.out.println(">> TennisCoach: inside doMyCleanupStuff");
 	}
 	
 	
