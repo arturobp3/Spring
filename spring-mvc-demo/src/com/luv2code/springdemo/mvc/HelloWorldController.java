@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/hello") //Parent mapping (evita conflictos con otros mapeos que se llamen igual en otros
+					//controladores
 public class HelloWorldController {
 
 	//Metodo para mostrar el formulario HTML inicial
